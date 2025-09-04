@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAUTIO - Cybersecurity Awareness</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="main-menu">
+    <div class="stars"></div>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">CAUTIO</h1>
+            <div class="logo-subtitle">Cybersecurity Awareness Training</div>
+        </header>
+
+        <main class="main-content">
+            <section class="intro">
+                <h2>Why Cybersecurity Awareness Matters</h2>
+                <p>In today's digital world, cyber threats are everywhere. From phishing emails to ransomware attacks, 
+                   understanding cybersecurity is crucial for protecting yourself and your organization. 
+                   CAUTIO provides interactive training to help you recognize and avoid common cyber threats.</p>
+            </section>
+
+            <section class="game-modes">
+                <div class="mode-card runner-card">
+                    <div class="mode-icon">🏃‍♂️</div>
+                    <h3>Runner Mode</h3>
+                    <p>Test your cybersecurity knowledge in an exciting endless runner game. 
+                       Make the right choices to avoid cyber threats and reach new distances!</p>
+                    <button class="mode-btn runner-btn" onclick="startRunnerMode()">
+                        <span>Play Runner Mode</span>
+                    </button>
+                </div>
+
+                <div class="mode-card quiz-card">
+                    <div class="mode-icon">🧠</div>
+                    <h3>Quiz Mode</h3>
+                    <p>Challenge yourself with comprehensive cybersecurity questions covering 
+                       modern threats, best practices, and security protocols.</p>
+                    <button class="mode-btn quiz-btn" onclick="startQuizMode()">
+                        <span>Take Quiz Test</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="best-runner-score">0</div>
+                    <div class="stat-label">Best Runner Score</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="best-quiz-score">0%</div>
+                    <div class="stat-label">Best Quiz Score</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="total-distance">0km</div>
+                    <div class="stat-label">Total Distance</div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 CAUTIO - Building Cybersecurity Awareness</p>
+        </footer>
+    </div>
+
+    <script>
+        // Load and display saved statistics
+        function loadStats() {
+            const bestRunnerScore = localStorage.getItem('cautio-best-runner-score') || '0';
+            const bestQuizScore = localStorage.getItem('cautio-best-quiz-score') || '0';
+            const totalDistance = localStorage.getItem('cautio-total-distance') || '0';
+            
+            document.getElementById('best-runner-score').textContent = bestRunnerScore;
+            document.getElementById('best-quiz-score').textContent = bestQuizScore + '%';
+            document.getElementById('total-distance').textContent = totalDistance + 'km';
+        }
+
+        function startRunnerMode() {
+            window.location.href = 'runner.html';
+        }
+
+        function startQuizMode() {
+            window.location.href = 'quiz.html';
+        }
+
+        // Generate animated stars background
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStats();
+            createStars();
+        });
+    </script>
+</body>
+</html>
